@@ -17,6 +17,28 @@ body {
     align-items: center;
 } 
 
+.header-container[display-mode="light"] {
+    background-color: white;
+}
+
+.header-container[display-mode="dark"] {
+    background-color: black;
+}
+
+.title {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+}
+
+.title[display-mode="light"] {
+    color: black;
+}
+
+.title[display-mode="dark"] {
+    color: white;
+}
+
 .game-container {
     display: flex;
     width: 100%;
@@ -55,8 +77,12 @@ body {
     cursor: pointer;
 }
 
-.box:hover {
+.box[display-mode="light"]:hover {
     background-color: rgb(235, 235, 235);
+}
+
+.box[display-mode="dark"]:hover {
+    background-color: rgb(35, 35, 35);
 }
 
 .box[display-mode="light"] {
