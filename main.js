@@ -7,6 +7,9 @@ function theme(mode) {
     for (let i = 0; i < 9; i++) {
         document.getElementsByClassName("box")[i].setAttribute("display-mode", mode);
     }
+    for (let i = 0; i < 2; i++) {
+        document.getElementsByClassName("display-mode-button")[i].setAttribute("display-mode", mode);
+    }
 }
 
 theme("dark")
