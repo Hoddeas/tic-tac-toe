@@ -1,4 +1,6 @@
-    
+
+
+
 function theme(mode) {
     document.getElementById("game-container").setAttribute("display-mode", mode);
     document.getElementById("gameboard").setAttribute("display-mode", mode);
@@ -12,4 +14,18 @@ function theme(mode) {
     }
 }
 
-theme("dark")
+let savedDisplayMode = localStorage.getItem("theme");
+
+theme(savedDisplayMode);
+
+let lightModeButton = document.getElementById("light-mode-button");
+let darkModeButton = document.getElementById("dark-mode-button");
+
+lightModeButton.addEventListener("click", () => {
+    theme("light");
+    localStorage.setItem("theme", "light")
+})
+darkModeButton.addEventListener("click", () => {
+    theme("dark");
+    localStorage.setItem("theme", "dark")
+})
