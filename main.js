@@ -6,6 +6,7 @@ function theme(mode) {
     document.getElementById("gameboard").setAttribute("data-display-mode", mode);
     document.getElementById("header-container").setAttribute("data-display-mode", mode);
     document.getElementById("title").setAttribute("data-display-mode", mode);
+    document.getElementById("body").setAttribute("data-display-mode", mode);
     for (let i = 0; i < 9; i++) {
         document.getElementsByClassName("box")[i].setAttribute("data-display-mode", mode);
     }
@@ -44,7 +45,8 @@ darkModeButton.addEventListener("click", () => {
 let gameboard = document.getElementById("gameboard");
 
 gameboard.addEventListener("click", (e) => {
-    e.target.classList.add("x")
+    e.target.classList.add("o")
 })
 
+// Function for alternating between turns
 
