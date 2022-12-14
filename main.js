@@ -25,7 +25,6 @@ if (savedDisplayMode === null) {
     theme("light");
 }
 
-
 // Theme Buttons
 let lightModeButton = document.getElementById("light-mode-button");
 let darkModeButton = document.getElementById("dark-mode-button");
@@ -48,5 +47,8 @@ gameboard.addEventListener("click", (e) => {
     e.target.classList.add("o")
 })
 
-// Function for alternating between turns
+//
 
+// Function for alternating between turns
+document.getElementById("computer").setAttribute("data-is-playing", "true");
+document.getElementById("player-two").setAttribute("data-is-playing", "false");
