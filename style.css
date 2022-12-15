@@ -96,7 +96,27 @@ body {
 }
 
 .scoreboard-container {
+    width: 500px;
+    left: 50%;
+    top: 50%;
+    margin-left: 250px;
+}
 
+.scoreboard div {
+    display: inline-block;
+    text-align: center;
+}
+
+.scoreboard span {
+    display: block;
+}
+
+.scoreboard-container button[data-mode="true"] {
+    display: inline-block;
+}
+
+.scoreboard-container button[data-mode="false"] {
+    display: none;
 }
 
 .game-container {
