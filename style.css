@@ -46,7 +46,7 @@ body {
 }
 
 .title[data-display-mode="light"] {
-    color:rgb(35, 35, 35);
+    color: black;
 }
 
 .title[data-display-mode="dark"] {
@@ -96,26 +96,89 @@ body {
 }
 
 .scoreboard-container {
-    width: 500px;
+    width: 1000px;
     left: 50%;
     top: 50%;
-    margin-left: 250px;
+    margin-left: -250px;
+    margin-top: -285px;
+    position: absolute;
+    box-sizing: inherit;
+    text-align: center;
+}
+
+.scoreboard {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.scoreboard[data-display-mode="light"] {
+    color: black;
+}
+
+.scoreboard[data-display-mode="dark"] {
+    color: white;
 }
 
 .scoreboard div {
     display: inline-block;
-    text-align: center;
 }
 
 .scoreboard span {
     display: block;
 }
 
-.scoreboard-container button[data-mode="true"] {
+.swap-buttons {
+    display: inline-block;
+    margin: 0 -60px 0 0;
+    vertical-align: top;
+}
+
+.scoreboard-container button {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    padding: 0;
+    cursor: pointer;
+}
+
+.scoreboard-container button[data-display-mode="light"] {
+    color: black;
+    background-color: white;
+    border: black solid 2px;
+}
+
+.scoreboard-container button[data-display-mode="dark"] {
+    color: white;
+    background-color: black;
+    border: white solid 2px;
+}
+
+.scoreboard-container button[data-display-mode="light"]:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.scoreboard-container button[data-display-mode="dark"]:hover {
+    background-color: rgb(50, 50, 50);
+}
+
+.scoreboard-container button#one-player[data-players="one"] {
     display: inline-block;
 }
 
-.scoreboard-container button[data-mode="false"] {
+.scoreboard-container button#one-player[data-players="two"] {
+    display: none;
+}
+
+.scoreboard-container button#two-player[data-players="two"] {
+    display: inline-block;
+}
+
+.scoreboard-container button#two-player[data-players="one"] {
     display: none;
 }
 

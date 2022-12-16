@@ -7,6 +7,10 @@ function theme(mode) {
     document.getElementById("header-container").setAttribute("data-display-mode", mode);
     document.getElementById("title").setAttribute("data-display-mode", mode);
     document.getElementById("body").setAttribute("data-display-mode", mode);
+    document.getElementById("scoreboard").setAttribute("data-display-mode", mode);
+    for (let i = 0; i < 2; i++) {
+        document.getElementsByClassName("swap-button")[i].setAttribute("data-display-mode", mode);
+    }
     for (let i = 0; i < 9; i++) {
         document.getElementsByClassName("box")[i].setAttribute("data-display-mode", mode);
     }
@@ -49,6 +53,3 @@ gameboard.addEventListener("click", (e) => {
 
 //
 
-// Function for alternating between turns
-document.getElementById("computer").setAttribute("data-is-playing", "true");
-document.getElementById("player-two").setAttribute("data-is-playing", "false");

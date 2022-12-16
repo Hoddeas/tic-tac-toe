@@ -27,26 +27,28 @@
         </div>
 
         <div class="scoreboard-container" id="scoreboard-container">
-            <div class="scoreboard" id="scoreboard">
+            <div class="scoreboard" id="scoreboard" data-display-mode="">
                 <div class="player-one">
                     <div class="player">Player</div>
                     <div class="player-1">Player 1</div>
-                    <div class="x">(X):</div>
+                    <div class="x">(X)</div>
                     <span class="player-one-score">0</span>
                 </div>
                 <div class="tie">
-                    Tie:
+                    Tie
                     <span class="tie-score">0</span>
                 </div>
                 <div class="player-two">
                     <div class="player-2">Player 2</div>
                     <div class="computer">Computer</div>
-                    <div class="o">(O):</div>
+                    <div class="o">(O)</div>
                     <span class="player-two-score">0</span>
                 </div>
-            </div>
-            <button class="one-player" data-mode="true">1P</button>
-            <button class="two-player" data-mode="false">2P</button>
+                <div class="swap-buttons">
+                    <button class="swap-button" id="one-player" data-players="one" data-display-mode="">1P</button>
+                    <button class="swap-button" id="two-player" data-players="one" data-display-mode="">2P</button>
+                </div>
+            </div>  
         </div>
 
         <div class="game-container" id="game-container" data-display-mode="">
