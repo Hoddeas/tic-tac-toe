@@ -28,9 +28,9 @@
 
         <div class="scoreboard-container" id="scoreboard-container">
             <div class="scoreboard" id="scoreboard" data-display-mode="">
-                <div class="player-one">
-                    <div class="player">Player</div>
-                    <div class="player-1">Player 1</div>
+                <div class="player-one" id="player-one">
+                    <div class="player" id="player">Player</div>
+                    <div class="player-1" id="player-1">Player 1</div>
                     <div class="x">(X)</div>
                     <span class="player-one-score">0</span>
                 </div>
@@ -38,13 +38,13 @@
                     Tie
                     <span class="tie-score">0</span>
                 </div>
-                <div class="player-two">
-                    <div class="player-2">Player 2</div>
-                    <div class="computer">Computer</div>
+                <div class="player-two" id="player-two">
+                    <div class="computer" id="computer">Computer</div>
+                    <div class="player-2" id="player-2">Player 2</div>
                     <div class="o">(O)</div>
                     <span class="player-two-score">0</span>
                 </div>
-                <div class="swap-buttons">
+                <div class="swap-buttons" id="swap-buttons">
                     <button class="swap-button" id="one-player" data-players="one" data-display-mode="">1P</button>
                     <button class="swap-button" id="two-player" data-players="one" data-display-mode="">2P</button>
                 </div>
@@ -53,17 +53,17 @@
 
         <div class="game-container" id="game-container" data-display-mode="">
             <div class="gameboard" id="gameboard" data-display-mode="">
-                <div class="box" id="square-top-left" data-display-mode=""></div>
-                <div class="box" id="square-top" data-display-mode=""></div>
-                <div class="box" id="square-top-right" data-display-mode=""></div>
+                <div class="box" id="square-top-left" data-display-mode="" data-placed=""></div>
+                <div class="box" id="square-top" data-display-mode="" data-placed=""></div>
+                <div class="box" id="square-top-right" data-display-mode="" data-placed=""></div>
 
-                <div class="box" id="square-middle-left" data-display-mode=""></div>
-                <div class="box" id="square-middle" data-display-mode=""></div>
-                <div class="box" id="square-middle-right" data-display-mode=""></div>
+                <div class="box" id="square-middle-left" data-display-mode="" data-placed=""></div>
+                <div class="box" id="square-middle" data-display-mode="" data-placed=""></div>
+                <div class="box" id="square-middle-right" data-display-mode="" data-placed=""></div>
 
-                <div class="box" id="square-bottom-left" data-display-mode=""></div>
-                <div class="box" id="square-bottom" data-display-mode=""></div>
-                <div class="box" id="square-bottom-right" data-display-mode=""></div>
+                <div class="box" id="square-bottom-left" data-display-mode="" data-placed=""></div>
+                <div class="box" id="square-bottom" data-display-mode="" data-placed=""></div>
+                <div class="box" id="square-bottom-right" data-display-mode="" data-placed=""></div>
             </div>
         </div>
         

@@ -99,7 +99,7 @@ body {
     width: 1000px;
     left: 50%;
     top: 50%;
-    margin-left: -250px;
+    margin-left: -535px;
     margin-top: -285px;
     position: absolute;
     box-sizing: inherit;
@@ -120,7 +120,15 @@ body {
     color: white;
 }
 
-.scoreboard div {
+.player-one, .tie, .player-two, .swap-buttons div {
+    display: inline-block;
+}
+
+.player-one, .player-two {
+    width: 250px;
+}
+
+.player, .player-1, .x, .computer, .player-2, .o {
     display: inline-block;
 }
 
@@ -130,7 +138,7 @@ body {
 
 .swap-buttons {
     display: inline-block;
-    margin: 0 -60px 0 0;
+    margin: 0 -60px 0 -50px;
     vertical-align: top;
 }
 
@@ -182,6 +190,10 @@ body {
     display: none;
 }
 
+.player-1, .player-2 {
+    display: none;
+}
+
 .game-container {
     left: 50%;
     top: 50%;
@@ -226,31 +238,31 @@ body {
     font-size: 50px;
 }
 
-.box.x {
+.box[data-placed="x"] {
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.box.o {
+.box[data-placed="o"] {
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.box.x[data-display-mode="light"] {
+.box[data-placed="x"][data-display-mode="light"] {
     background-image: url('data:image/svg+xml,%3Csvg%20id%3D%22e9bL7x4R2w81%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20viewBox%3D%220%200%20300%20300%22%20shape-rendering%3D%22geometricPrecision%22%20text-rendering%3D%22geometricPrecision%22%3E%3Cline%20x1%3D%22-146.890827%22%20y1%3D%22-147.186269%22%20x2%3D%22146.890827%22%20y2%3D%22147.186269%22%20transform%3D%22matrix(0-.967399%200.963596%200%20150%20150.277071)%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%2224%22%2F%3E%3Cline%20x1%3D%22-146.890827%22%20y1%3D%22-147.186269%22%20x2%3D%22146.890827%22%20y2%3D%22147.186269%22%20transform%3D%22matrix(-.967399%200%200-.963596%20150%20150.277071)%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%2224%22%2F%3E%3C%2Fsvg%3E%0A');
 }
 
-.box.x[data-display-mode="dark"] {
+.box[data-placed="x"][data-display-mode="dark"] {
     background-image: url('data:image/svg+xml,%3Csvg%20id%3D%22ei0z691aWVC1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20viewBox%3D%220%200%20300%20300%22%20shape-rendering%3D%22geometricPrecision%22%20text-rendering%3D%22geometricPrecision%22%3E%3Cline%20x1%3D%22-146.890827%22%20y1%3D%22-147.186269%22%20x2%3D%22146.890827%22%20y2%3D%22147.186269%22%20transform%3D%22matrix(0-.967399%200.963596%200%20150%20150.277071)%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2224%22%2F%3E%3Cline%20x1%3D%22-146.890827%22%20y1%3D%22-147.186269%22%20x2%3D%22146.890827%22%20y2%3D%22147.186269%22%20transform%3D%22matrix(-.967399%200%200-.963596%20150%20150.277071)%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2224%22%2F%3E%3C%2Fsvg%3E%0A');
 }
 
-.box.o[data-display-mode="light"] {
+.box[data-placed="o"][data-display-mode="light"] {
     background-image: url('data:image/svg+xml,%3Csvg%20id%3D%22eBhQCGuToIr1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20viewBox%3D%220%200%20300%20300%22%20shape-rendering%3D%22geometricPrecision%22%20text-rendering%3D%22geometricPrecision%22%3E%3Cellipse%20rx%3D%2230.100058%22%20ry%3D%2230.100058%22%20transform%3D%22matrix(4.60132%200%200%204.60132%20150%20150)%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%225%22%2F%3E%3C%2Fsvg%3E%0A');
 }
 
-.box.o[data-display-mode="dark"] {
+.box[data-placed="o"][data-display-mode="dark"] {
     background-image: url('data:image/svg+xml,%3Csvg%20id%3D%22euE0GRTit9L1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20viewBox%3D%220%200%20300%20300%22%20shape-rendering%3D%22geometricPrecision%22%20text-rendering%3D%22geometricPrecision%22%3E%3Cellipse%20rx%3D%2230.100058%22%20ry%3D%2230.100058%22%20transform%3D%22matrix(4.60132%200%200%204.60132%20150%20150)%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22%2F%3E%3C%2Fsvg%3E%0A');
 }
 
