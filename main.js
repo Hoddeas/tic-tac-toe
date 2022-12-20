@@ -7,7 +7,7 @@ function theme(mode) {
     document.getElementById("header-container").setAttribute("data-display-mode", mode);
     document.getElementById("title").setAttribute("data-display-mode", mode);
     document.getElementById("body").setAttribute("data-display-mode", mode);
-    document.getElementById("scoreboard").setAttribute("data-display-mode", mode);
+    document.getElementById("infoboard").setAttribute("data-display-mode", mode);
     for (let i = 0; i < 2; i++) {
         document.getElementsByClassName("swap-button")[i].setAttribute("data-display-mode", mode);
     }
@@ -44,6 +44,8 @@ darkModeButton.addEventListener("click", () => {
     localStorage.setItem("theme", "dark")
 })
 
+// Game
+
 // Player Mode
 let playerMode = "one-player";
 let player = document.getElementById("player");
@@ -74,45 +76,72 @@ swapButton.addEventListener("click", () => {
 
 // Winning Combinations
 let win = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
-    [3, 6, 9],
-    [1, 5, 9],
-    [3, 5, 7]
+    [0, 4, 8],
+    [2, 4, 6]
 ];
 
-// Game
+// Add X and O
 let gameboard = document.getElementById("gameboard");
-let playerTurn = true;
-let computerTurn = false;
 let playerOneTurn = true;
 let playerTwoTurn = false;
-
+let playerTurn = true;
+let computerTurn = false;
+let moveCount = 0;
 
 gameboard.addEventListener("click", (e) => {
     if (playerMode === "two-player") {
-        if (playerOneTurn) {
-            if (e.target.getAttribute("data-placed") === "o") {
-                return;
-            }
-            e.target.setAttribute("data-placed", "x");
-            playerOneTurn = false;
-            playerTwoTurn = true;
-        } else if (playerTwoTurn) {
-            if (e.target.getAttribute("data-placed") === "x") {
-                return;
-            }
-            e.target.setAttribute("data-placed", "o");
-            playerOneTurn = true;
-            playerTwoTurn = false;
-        }
+        twoPlayerMode(e);
     }
 
-    for (let i = 0; i < 8; i++) {
-        if (gameboard.children[win[i][0]].getAttribute("data-placed") === "x" && gameboard.children[win[i][1]].getAttribute("data-placed") === "x" && gameboard.children[win[i][2]].getAttribute("data-placed") === "x")
-            console.log("x win")
+    checkWin();
+
+    if (moveCount === 9) {
+        console.log("tie")
     }
 });
+
+
+// FUNCTIONS
+
+// Check win
+function checkWin() {
+    for (let i = 0; i < 8; i++) {
+        if (gameboard.children[win[i][0]].getAttribute("data-placed") === "x" && gameboard.children[win[i][1]].getAttribute("data-placed") === "x" && gameboard.children[win[i][2]].getAttribute("data-placed") === "x") {
+
+        } else if (gameboard.children[win[i][0]].getAttribute("data-placed") === "o" && gameboard.children[win[i][1]].getAttribute("data-placed") === "o" && gameboard.children[win[i][2]].getAttribute("data-placed") === "o") {
+ 
+        }
+    }
+}
+
+// Two Player Switch Turn
+function twoPlayerMode(e) {
+    if (playerOneTurn) {
+        if (e.target.getAttribute("data-placed") === "o") {
+            return;
+        }
+        e.target.setAttribute("data-placed", "x");
+        playerOneTurn = false;
+        playerTwoTurn = true;
+        moveCount++;
+    } else if (playerTwoTurn) {
+        if (e.target.getAttribute("data-placed") === "x") {
+            return;
+        }
+        e.target.setAttribute("data-placed", "o");
+        playerOneTurn = true;
+        playerTwoTurn = false;
+        moveCount++;
+    }
+}
+
+// Restart Game
+function restart() {
+    
+}

@@ -95,32 +95,47 @@ body {
     display: none;
 }
 
-.scoreboard-container {
+.infoboard-container {
     width: 1000px;
     left: 50%;
-    top: 50%;
+    top: 40%;
     margin-left: -535px;
     margin-top: -285px;
     position: absolute;
     box-sizing: inherit;
     text-align: center;
+    height: 500px;
 }
 
-.scoreboard {
+.infoboard {
+    margin-top: 50px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     font-weight: bold;
 }
 
-.scoreboard[data-display-mode="light"] {
+.infoboard[data-display-mode="light"] {
     color: black;
 }
 
-.scoreboard[data-display-mode="dark"] {
+.infoboard[data-display-mode="dark"] {
     color: white;
 }
 
-.player-one, .tie, .player-two, .swap-buttons div {
+.result {
+    display: flex;
+    width: inherit;
+    height: 50px;
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    margin-left: 35px;
+    justify-content: center;
+}
+
+.player-one, .player-two, .swap-buttons div {
     display: inline-block;
 }
 
@@ -132,7 +147,7 @@ body {
     display: inline-block;
 }
 
-.scoreboard span {
+.infoboard span {
     display: block;
 }
 
@@ -142,7 +157,7 @@ body {
     vertical-align: top;
 }
 
-.scoreboard-container button {
+.infoboard-container button {
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -154,39 +169,39 @@ body {
     cursor: pointer;
 }
 
-.scoreboard-container button[data-display-mode="light"] {
+.infoboard-container button[data-display-mode="light"] {
     color: black;
     background-color: white;
     border: black solid 2px;
 }
 
-.scoreboard-container button[data-display-mode="dark"] {
+.infoboard-container button[data-display-mode="dark"] {
     color: white;
     background-color: black;
     border: white solid 2px;
 }
 
-.scoreboard-container button[data-display-mode="light"]:hover {
+.infoboard-container button[data-display-mode="light"]:hover {
     background-color: rgb(235, 235, 235);
 }
 
-.scoreboard-container button[data-display-mode="dark"]:hover {
+.infoboard-container button[data-display-mode="dark"]:hover {
     background-color: rgb(50, 50, 50);
 }
 
-.scoreboard-container button#one-player[data-players="one"] {
+.infoboard-container button#one-player[data-players="one"] {
     display: inline-block;
 }
 
-.scoreboard-container button#one-player[data-players="two"] {
+.infoboard-container button#one-player[data-players="two"] {
     display: none;
 }
 
-.scoreboard-container button#two-player[data-players="two"] {
+.infoboard-container button#two-player[data-players="two"] {
     display: inline-block;
 }
 
-.scoreboard-container button#two-player[data-players="one"] {
+.infoboard-container button#two-player[data-players="one"] {
     display: none;
 }
 
