@@ -135,6 +135,30 @@ body {
     justify-content: center;
 }
 
+.result[data-animation="blink"] {
+    animation: blink 500ms steps(1) 2;
+}
+
+.result[data-display-mode="light"] {
+    color: black;
+}
+
+.result[data-display-mode="dark"] {
+    color: white;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .player-one, .player-two, .swap-buttons div {
     display: inline-block;
 }
