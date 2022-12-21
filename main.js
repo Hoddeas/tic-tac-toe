@@ -95,6 +95,7 @@ let playerTurn = true;
 let computerTurn = false;
 let moveCount = 0;
 let canPlace = true;
+let didWin = false;
 
 gameboard.addEventListener("click", (e) => {
     if (!canPlace) {
@@ -107,7 +108,7 @@ gameboard.addEventListener("click", (e) => {
 
     checkWin();
 
-    if (moveCount === 9) {
+    if (moveCount === 9 && !didWin) {
         result.innerHTML = "Tie";
             result.setAttribute("data-animation", "blink");
             result.addEventListener("animationend", () => {
@@ -127,6 +128,7 @@ function checkWin() {
     for (let i = 0; i < 8; i++) {
         if (gameboard.children[win[i][0]].getAttribute("data-placed") === "x" && gameboard.children[win[i][1]].getAttribute("data-placed") === "x" && gameboard.children[win[i][2]].getAttribute("data-placed") === "x") {
             canPlace = false;
+            didWin = true;
             result.innerHTML = "Player 1 Win";
             result.setAttribute("data-animation", "blink");
             result.addEventListener("animationend", () => {
@@ -136,6 +138,7 @@ function checkWin() {
             });
         } else if (gameboard.children[win[i][0]].getAttribute("data-placed") === "o" && gameboard.children[win[i][1]].getAttribute("data-placed") === "o" && gameboard.children[win[i][2]].getAttribute("data-placed") === "o") {
             canPlace = false;
+            didWin = true;
             result.innerHTML = "Player 2 Win";
             result.setAttribute("data-animation", "blink");
             result.addEventListener("animationend", () => {
@@ -178,4 +181,5 @@ function restart() {
     }
     moveCount = 0;
     canPlace = true;
+    didWin = false;
 }
