@@ -167,6 +167,23 @@ body {
     width: 250px;
 }
 
+.player-one[data-display-mode="light"], .player-two[data-display-mode="light"] {
+    color: rgb(165, 165, 165);
+}
+
+.player-one[data-display-mode="dark"], .player-two[data-display-mode="dark"] {
+    color: rgb(125, 125, 125);
+}
+
+.turn[data-display-mode="light"] {
+    color: black;
+}
+
+.turn[data-display-mode="dark"] {
+    color: white;
+}
+
+
 .player, .player-1, .x, .computer, .player-2, .o {
     display: inline-block;
 }

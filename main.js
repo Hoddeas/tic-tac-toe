@@ -9,6 +9,8 @@ function theme(mode) {
     document.getElementById("body").setAttribute("data-display-mode", mode);
     document.getElementById("infoboard").setAttribute("data-display-mode", mode);
     document.getElementById("result").setAttribute("data-display-mode", mode);
+    document.getElementById("player-one").setAttribute("data-display-mode", mode);
+    document.getElementById("player-two").setAttribute("data-display-mode", mode);
     for (let i = 0; i < 2; i++) {
         document.getElementsByClassName("swap-button")[i].setAttribute("data-display-mode", mode);
     }
@@ -62,23 +64,32 @@ let computer = document.getElementById("computer");
 let playerTwo = document.getElementById("player-2");
 let swapButton = document.getElementById("swap-buttons");
 
+document.getElementById("player-one").classList.add("turn");
+document.getElementById("player-two").classList.remove("turn");
+
 swapButton.addEventListener("click", () => {
     if (playerMode === "one-player") {
+        document.getElementById("player-one").classList.add("turn");
+        document.getElementById("player-two").classList.remove("turn");
+        restart();
+        playerOneTurn = true;
+        playerTwoTurn = false;
         playerMode = "two-player";
-    } else if (playerMode === "two-player") {
-        playerMode = "one-player";
-    }
-
-    if (playerMode === "one-player") {
-        player.style.display = "inline-block";
-        computer.style.display = "inline-block";
-        playerOne.style.display = "none";
-        playerTwo.style.display = "none";
-    } else if (playerMode === "two-player") {
         playerOne.style.display = "inline-block";
         playerTwo.style.display = "inline-block";
         player.style.display = "none";
         computer.style.display = "none";
+    } else if (playerMode === "two-player") {
+        restart();
+        playerOneTurn = true;
+        playerTwoTurn = false;
+        document.getElementById("player-one").classList.add("turn");
+        document.getElementById("player-two").classList.remove("turn");
+        playerMode = "one-player";
+        player.style.display = "inline-block";
+        computer.style.display = "inline-block";
+        playerOne.style.display = "none";
+        playerTwo.style.display = "none";
     }
 });
 
@@ -163,7 +174,8 @@ function twoPlayerMode(e) {
         if (e.target.getAttribute("data-placed") === "o" || e.target.getAttribute("data-placed") === "x") {
             return;
         }
-        console.log("passed")
+        document.getElementById("player-two").classList.add("turn");
+        document.getElementById("player-one").classList.remove("turn");
         e.target.setAttribute("data-placed", "x");
         playerOneTurn = false;
         playerTwoTurn = true;
@@ -172,13 +184,13 @@ function twoPlayerMode(e) {
         if (e.target.getAttribute("data-placed") === "x" || e.target.getAttribute("data-placed") === "o") {
             return;
         }
-        console.log("passed")
+        document.getElementById("player-one").classList.add("turn");
+        document.getElementById("player-two").classList.remove("turn");
         e.target.setAttribute("data-placed", "o");
         playerOneTurn = true;
         playerTwoTurn = false;
         moveCount++;
     }
-    console.log(moveCount)
 }
 
 // Restart Game
