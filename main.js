@@ -51,9 +51,9 @@ darkModeButton.addEventListener("click", () => {
 
 // Board
 let board = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8]
+    ["","",""],
+    ["","",""],
+    ["","",""],
 ];
 
 // Player Mode
@@ -113,27 +113,18 @@ let playerTurn = true;
 let computerTurn = false;
 let moveCount = 0;
 let canPlace = true;
-let didWin = false;
 
 gameboard.addEventListener("click", (e) => {
     if (!canPlace) {
         return;
     }
 
-    if (playerMode === "two-player") {
+    if (playerMode === "one-player" && computerTurn === false) {
+        onePlayerMode(e);
+        checkWin("Player", "Computer");
+    } else if (playerMode === "two-player") {
         twoPlayerMode(e);
-    }
-
-    checkWin();
-
-    if (moveCount === 9 && !didWin) {
-        result.innerHTML = "Tie";
-            result.setAttribute("data-animation", "blink");
-            result.addEventListener("animationend", () => {
-                result.setAttribute("data-animation", "");
-                result.innerHTML = "";
-                restart();
-            });
+        checkWin("Player 1", "Player 2");
     }
 });
 
@@ -142,12 +133,11 @@ gameboard.addEventListener("click", (e) => {
 
 // Check win
 let result = document.getElementById("result");
-function checkWin() {
+function checkWin(winnerOne, winnerTwo) {
     for (let i = 0; i < 8; i++) {
         if (gameboard.children[win[i][0]].getAttribute("data-placed") === "x" && gameboard.children[win[i][1]].getAttribute("data-placed") === "x" && gameboard.children[win[i][2]].getAttribute("data-placed") === "x") {
             canPlace = false;
-            didWin = true;
-            result.innerHTML = "Player 1 Win";
+            result.innerHTML = `${winnerOne} Win`;
             result.setAttribute("data-animation", "blink");
             result.addEventListener("animationend", () => {
                 result.setAttribute("data-animation", "");
@@ -156,8 +146,15 @@ function checkWin() {
             });
         } else if (gameboard.children[win[i][0]].getAttribute("data-placed") === "o" && gameboard.children[win[i][1]].getAttribute("data-placed") === "o" && gameboard.children[win[i][2]].getAttribute("data-placed") === "o") {
             canPlace = false;
-            didWin = true;
-            result.innerHTML = "Player 2 Win";
+            result.innerHTML = `${winnerTwo} Win`;
+            result.setAttribute("data-animation", "blink");
+            result.addEventListener("animationend", () => {
+                result.setAttribute("data-animation", "");
+                result.innerHTML = "";
+                restart();
+            });
+        } else if (moveCount === 9) {
+            result.innerHTML = "Tie";
             result.setAttribute("data-animation", "blink");
             result.addEventListener("animationend", () => {
                 result.setAttribute("data-animation", "");
@@ -168,7 +165,55 @@ function checkWin() {
     }
 }
 
-// Two Player Switch Turn
+// One Player Mode
+function onePlayerMode(e) {
+    if (playerTurn) {
+        if (e.target.getAttribute("data-placed") === "o" || e.target.getAttribute("data-placed") === "x") {
+            return;
+        }
+        document.getElementById("player-two").classList.add("turn");
+        document.getElementById("player-one").classList.remove("turn");
+        e.target.setAttribute("data-placed", "x");
+        moveCount++;
+        markPosition(e);
+        console.log(board)
+    }
+}
+
+// Mark Position
+function markPosition(e) {
+    switch(e.target.id) {
+        case "top-left":
+            board[0][0] = "x";
+            break;
+        case "top":
+            board[0][1] = "x";
+            break;
+        case "top-right":
+            board[0][2] = "x";
+            break;
+        case "middle-left":
+            board[1][0] = "x";
+            break;
+        case "middle":
+            board[1][1] = "x";
+            break;
+        case "middle-right":
+            board[1][2] = "x";
+            break;
+        case "bottom-left":
+            board[2][0] = "x";
+            break;
+        case "bottom":
+            board[2][1] = "x";
+            break;
+        case "bottom-right":
+            board[2][2] = "x";
+            break;
+    }
+}
+
+// Two Player Mode
 function twoPlayerMode(e) {
     if (playerOneTurn) {
         if (e.target.getAttribute("data-placed") === "o" || e.target.getAttribute("data-placed") === "x") {
@@ -198,7 +243,54 @@ function restart() {
     for (let i = 0; i < 9; i++) {
         gameboard.children[i].setAttribute("data-placed", "");
     }
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            board[i][j] = "";
+        }
+    }
     moveCount = 0;
     canPlace = true;
     didWin = false;
+}
+
+// AI FUNCTIONS
+
+// AI Check win
+
+/* function checkWin(winnerOne, winnerTwo) {
+    for (let i = 0; i < 8; i++) {
+        if (gameboard.children[win[i][0]].getAttribute("data-placed") === "x" && gameboard.children[win[i][1]].getAttribute("data-placed") === "x" && gameboard.children[win[i][2]].getAttribute("data-placed") === "x") {
+
+        } else if (gameboard.children[win[i][0]].getAttribute("data-placed") === "o" && gameboard.children[win[i][1]].getAttribute("data-placed") === "o" && gameboard.children[win[i][2]].getAttribute("data-placed") === "o") {
+            canPlace = false;
+            result.innerHTML = `${winnerTwo} Win`;
+            result.setAttribute("data-animation", "blink");
+            result.addEventListener("animationend", () => {
+                result.setAttribute("data-animation", "");
+                result.innerHTML = "";
+                restart();
+            });
+        } else if (moveCount === 9) {
+            result.innerHTML = "Tie";
+            result.setAttribute("data-animation", "blink");
+            result.addEventListener("animationend", () => {
+                result.setAttribute("data-animation", "");
+                result.innerHTML = "";
+                restart();
+            });
+        }
+    }
+}
+
+*/
+
+// AI Move
+function computerMove() {
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (board[i][j] === "_") {
+                board[i][j] === "o";
+            }
+        }
+    }
 }
