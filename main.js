@@ -178,6 +178,8 @@ function onePlayerMode(e) {
         markPosition(e);
         console.log(board)
     }
+    computerMove();
+
 }
 
 // Mark Position
@@ -257,39 +259,26 @@ function restart() {
 
 // AI Check win
 
-/* function checkWin(winnerOne, winnerTwo) {
+function AICheckWin() {
     for (let i = 0; i < 8; i++) {
         if (gameboard.children[win[i][0]].getAttribute("data-placed") === "x" && gameboard.children[win[i][1]].getAttribute("data-placed") === "x" && gameboard.children[win[i][2]].getAttribute("data-placed") === "x") {
-
+            return -1;
         } else if (gameboard.children[win[i][0]].getAttribute("data-placed") === "o" && gameboard.children[win[i][1]].getAttribute("data-placed") === "o" && gameboard.children[win[i][2]].getAttribute("data-placed") === "o") {
-            canPlace = false;
-            result.innerHTML = `${winnerTwo} Win`;
-            result.setAttribute("data-animation", "blink");
-            result.addEventListener("animationend", () => {
-                result.setAttribute("data-animation", "");
-                result.innerHTML = "";
-                restart();
-            });
+            return 1;
         } else if (moveCount === 9) {
-            result.innerHTML = "Tie";
-            result.setAttribute("data-animation", "blink");
-            result.addEventListener("animationend", () => {
-                result.setAttribute("data-animation", "");
-                result.innerHTML = "";
-                restart();
-            });
+            return 0;
         }
     }
 }
 
-*/
 
 // AI Move
 function computerMove() {
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
-            if (board[i][j] === "_") {
-                board[i][j] === "o";
+            if (board[i][j] === "") {
+                board[i][j] = "o";  
+                console.log(board)
             }
         }
     }
