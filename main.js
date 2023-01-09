@@ -67,14 +67,18 @@ let swapButton = document.getElementById("swap-buttons");
 document.getElementById("player-one").classList.add("turn");
 document.getElementById("player-two").classList.remove("turn");
 
+function setToPlayerOne() {
+    playerOneTurn = true;
+    playerTwoTurn = false;
+    document.getElementById("player-one").classList.add("turn");
+    document.getElementById("player-two").classList.remove("turn");
+}
+
 swapButton.addEventListener("click", () => {
     if (playerMode === "one-player") {
         playerMode = "two-player";
         restart();
-        playerOneTurn = true;
-        playerTwoTurn = false;
-        document.getElementById("player-one").classList.add("turn");
-        document.getElementById("player-two").classList.remove("turn");
+        setToPlayerOne();
         playerOne.style.display = "inline-block";
         playerTwo.style.display = "inline-block";
         player.style.display = "none";
@@ -82,10 +86,7 @@ swapButton.addEventListener("click", () => {
     } else if (playerMode === "two-player") {
         playerMode = "one-player";
         restart();
-        playerOneTurn = true;
-        playerTwoTurn = false;
-        document.getElementById("player-one").classList.add("turn");
-        document.getElementById("player-two").classList.remove("turn");
+        setToPlayerOne();
         player.style.display = "inline-block";
         computer.style.display = "inline-block";
         playerOne.style.display = "none";
@@ -132,36 +133,29 @@ gameboard.addEventListener("click", (e) => {
 
 // FUNCTIONS
 
-// Check win
+// Blink
 let result = document.getElementById("result");
+function resultBlink(winner) {
+    result.innerHTML = winner;
+    result.setAttribute("data-animation", "blink");
+    result.addEventListener("animationend", () => {
+        result.setAttribute("data-animation", "");
+        result.innerHTML = "";
+        restart();
+    });
+}
+
+// Check win
 function checkWin(winnerOne, winnerTwo) {
     for (let i = 0; i < 8; i++) {
         if (gameboard.children[win[i][0]].getAttribute("data-placed") === "x" && gameboard.children[win[i][1]].getAttribute("data-placed") === "x" && gameboard.children[win[i][2]].getAttribute("data-placed") === "x") {
             canPlace = false;
-            result.innerHTML = `${winnerOne} Win`;
-            result.setAttribute("data-animation", "blink");
-            result.addEventListener("animationend", () => {
-                result.setAttribute("data-animation", "");
-                result.innerHTML = "";
-                restart();
-            });
+            resultBlink(`${winnerOne} Win`);
         } else if (gameboard.children[win[i][0]].getAttribute("data-placed") === "o" && gameboard.children[win[i][1]].getAttribute("data-placed") === "o" && gameboard.children[win[i][2]].getAttribute("data-placed") === "o") {
             canPlace = false;
-            result.innerHTML = `${winnerTwo} Win`;
-            result.setAttribute("data-animation", "blink");
-            result.addEventListener("animationend", () => {
-                result.setAttribute("data-animation", "");
-                result.innerHTML = "";
-                restart();
-            });
+            resultBlink(`${winnerTwo} Win`);
         } else if (moveCount === 9) {
-            result.innerHTML = "Tie";
-            result.setAttribute("data-animation", "blink");
-            result.addEventListener("animationend", () => {
-                result.setAttribute("data-animation", "");
-                result.innerHTML = "";
-                restart();
-            });
+            resultBlink("Tie");
         }
     }
 }
